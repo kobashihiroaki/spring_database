@@ -1,17 +1,28 @@
+/*
 package com.tuyano.springboot;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller 
 public class SampleController {
-	@RequestMapping("/sample")
-	public ModelAndView index(ModelAndView mav) {
+	@RequestMapping("/{num}")
+	public ModelAndView index(@PathVariable int num, ModelAndView mav) {
 		mav.setViewName("sample");
-		mav.addObject("msg", "current data.");
-		DataObject obj = new DataObject(123, "hanako", "hanako@flower");
-		mav.addObject("object", obj);
+		mav.addObject("num", num);
+		if (num >= 0) {
+			mav.addObject("check", "num >= data.size() ? 0 : num");
+		} else {
+			mav.addObject("check", "num <= data.size() * -1 ? 0 : num * -1");
+		}
+		ArrayList<DataObject> data = new ArrayList<DataObject>();
+		data.add(new DataObject(0, "taro", "taro@yamada"));
+		data.add(new DataObject(1, "hanako", "hanako@flower"));
+		data.add(new DataObject(2, "sachiko", "sachiko@happy"));
 		return mav;
 	}
 }
@@ -52,3 +63,4 @@ class DataObject {
 		this.value = value;
 	}
 }
+*/
